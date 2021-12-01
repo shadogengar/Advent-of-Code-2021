@@ -21,6 +21,9 @@ Module Module1
         '-----------------------------------------------------------------------------------
         'Part 2
         
+        For i = 1 To 2000
+            Numbers(i) = FileToRead.ReadLine
+        Next
         For i = 1 To 1998
             Sum(i) = Numbers(i) + Numbers(i + 1) + Numbers(i + 2)
         Next
