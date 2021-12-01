@@ -1,0 +1,38 @@
+        Imports System.IO
+Module Module1
+
+    Sub Main()
+        Dim FileToRead As New StreamReader("U:\Depths.txt")
+        Dim Numbers(2002) As Integer
+        Dim Count As Integer = 0
+        Dim Sum(2002) As Integer
+        'Part 1
+        
+        For i = 1 To 2000
+            Numbers(i) = FileToRead.ReadLine
+        Next
+        Numbers(0) = Numbers(1)
+        For i = 1 To 2000
+            If Numbers(i) > Numbers(i - 1) Then
+                Count += 1
+            End If
+        Next
+
+        '-----------------------------------------------------------------------------------
+        'Part 2
+        
+        For i = 1 To 1998
+            Sum(i) = Numbers(i) + Numbers(i + 1) + Numbers(i + 2)
+        Next
+        Sum(0) = Sum(1)
+        For i = 1 To 1998
+            If Sum(i) > Sum(i - 1) Then
+                Count += 1
+            End If
+        Next
+
+        Console.WriteLine(Count)
+        Console.ReadLine()
+    End Sub
+
+End Module
