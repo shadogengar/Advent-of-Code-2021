@@ -1,24 +1,44 @@
 Imports System.IO
-Module VBModule
+Module Module1
     Sub Main()
-        Dim FileToRead as New Streamreader("U:\Instructions.txt")
-        Dim SplitFile as String = FileToRead.Split(" ")
-        Dim x as Integer
-        Dim y as Integer
-        Dim i as Integer
-        
+        Dim FileToRead As New StreamReader("U:\Instructions.txt")
+        Dim x As Integer
+        Dim y As Integer
+        Dim Aim As Integer
         'Part 1
-        For i = 1 to 2000
-            If SplitFile(i) = "Forward" then
-                x += SplitFile(i + 1)
-            ElseIf SplitFile(i) = "Up"
-                y -= SplitFile(i + 1)
-            ElseIf SplitFile(i) = "Down"
-                y += SplitFile(i + 1)
+
+        Do
+            Dim ReadFile As String = FileToRead.ReadLine
+            Dim SplitFile = ReadFile.Split(" ")
+            If SplitFile(0) = "forward" Then
+                x += SplitFile(1)
+            ElseIf SplitFile(0) = "up" Then
+                y -= SplitFile(1)
+            ElseIf SplitFile(0) = "down" Then
+                y += SplitFile(1)
             End If
-            i = i + 1
-        Next
-        Console.Writeline(x*y)
-        Console.Readline()
+        Loop Until FileToRead.EndOfStream
+
+        Console.WriteLine(x * y)
+
+        '-----------------------------------------------------------------------------------
+        'Part 2
+
+        Do
+            Dim ReadFile As String = FileToRead.ReadLine
+            Dim SplitFile = ReadFile.Split(" ")
+            If SplitFile(0) = "forward" Then
+                x += SplitFile(1)
+                y += Aim * SplitFile(1)
+            ElseIf SplitFile(0) = "up" Then
+                Aim -= SplitFile(1)
+            ElseIf SplitFile(0) = "down" Then
+                Aim += SplitFile(1)
+            End If
+        Loop Until FileToRead.EndOfStream
+
+        Console.WriteLine(x * y)
+
+        Console.ReadLine()
     End Sub
 End Module
